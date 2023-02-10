@@ -7,7 +7,7 @@ list_true = [0,0,0,0]
 list_ans = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
 for i in range(4):
-    list_true[i] = random.random()*100//10%6
+    list_true[i] = str(int(random.random()*100//10%4))
 
 for i in range(8):
     hit = 0
@@ -25,11 +25,9 @@ for i in range(8):
                     hit += 1
                 else:
                     blow += 1
-                break
         
     print(str(hit) + "ヒット")
     print(str(blow) + "ブロー")
-    break
 
 for i in range(4):
     print(list_true[i])
