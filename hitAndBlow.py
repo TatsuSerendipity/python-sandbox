@@ -13,10 +13,9 @@ for i in range(8):
     hit = 0
     blow = 0
     
-    list_ans[i][0] = input("1つ目：")
-    list_ans[i][1] = input("2つ目：")
-    list_ans[i][2] = input("3つ目：")
-    list_ans[i][3] = input("4つ目：")
+    print(str(i+1) + "回目")
+    for j in range(4):
+        list_ans[i][j] = input(str(j + 1) + "つ目：")
 
     for j in range(4):
         for k in range(4):
