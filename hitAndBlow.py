@@ -1,37 +1,37 @@
 import random
-# ０、１、２、３、４、５
-# 青、赤、緑、黄。桃、白
-#8ターン
 
-list_true = [0,0,0,0]
-list_ans = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+#ランダムの4桁の数字を生成する
+def generate_number():
+    number = str(random.randint(1000, 9999))
+    return number
 
-#[0,1,2,1]
-#[1,3,2,3]
+#ヒットとブローの数を計算
+def get_hits_and_blows(guess, number):
+    hits = 0
+    blows = 0
+    for i in range(len(number)):
+        if guess[i] == number[i]:
+            hits += 1
+        elif guess[i] in number:
+            blows += 1
+    return (hits, blows)
 
+def play_game():
+    count = 0
+    number = generate_number()
+    print("4桁の数字を入力してください(回答はAを入力): ")
+    while True:
+        guess = input().strip()
+        count += 1
+        if guess == "A":
+            print("正解は　", number, "　です！")
+        if len(guess) != 4 or not guess.isdigit():
+            print("4桁の数字を入力してください")
+            continue
+        (hits, blows) = get_hits_and_blows(guess, number)
+        if hits == 4:
+            print("正解です！", number, ":", count, "回かかりました。")
+            break
+        print("Hits:", hits, "Blows:", blows)
 
-for i in range(4):
-    list_true[i] = str(int(random.random()*100//10%4))
-
-for i in range(8):
-    hit = 0
-    blow = 0
-    
-    print(str(i+1) + "回目")
-    for j in range(4):
-        list_ans[i][j] = input(str(j + 1) + "つ目：")
-
-    for j in range(4):
-        for k in range(4):
-            if list_ans[i][j] == list_true[k]:
-                if j == k:
-                    hit += 1
-                else:
-                    blow += 1
-                break
-        
-    print(str(hit) + "ヒット")
-    print(str(blow) + "ブロー")
-
-for i in range(4):
-    print(list_true[i])
+play_game()
